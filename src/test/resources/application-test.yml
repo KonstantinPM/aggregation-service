@@ -1,0 +1,50 @@
+aggregation:
+  data-sources:
+    - name: db1
+      strategy: postgres
+      user: postgres_user
+      password: postgres_password
+      url: jdbc:postgresql://${pg1.host}:${pg1.port}/userdb
+      table: users
+      mapping:
+        id: user_id
+        username: login
+        name: first_name
+        surname: last_name
+    - name: db2
+      strategy: postgres
+      user: postgres_user_2
+      password: postgres_password_2
+      url: jdbc:postgresql://${pg2.host}:${pg2.port}/user_database
+      table: user_table
+      mapping:
+        id: ldap_login
+        username: ldap_login
+        name: name
+        surname: surname
+    - name: db3
+      strategy: mysql
+      user: mysql_user
+      password: mysql_password
+      url: jdbc:mysql://${mysql1.host}:${mysql1.port}/user_db
+      table: users_table
+      mapping:
+        id: user_id
+        username: user_login
+        name: user_name
+        surname: user_surname
+    - name: db4
+      strategy: mongo
+      url: mongodb://mongo_user:mongo_password@${mongo1.host}:${mongo1.port}/userdb
+      database: userdb
+      table: users
+      mapping:
+        id: userId
+        username: userLogin
+        name: userName
+        surname: userSurname
+
+jdbc:
+  drivers:
+    postgres: org.postgresql.Driver
+    mysql: com.mysql.cj.jdbc.Driver

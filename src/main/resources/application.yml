@@ -1,0 +1,51 @@
+spring.application.name: aggregation-service
+
+aggregation:
+  data-sources:
+    - name: db1
+      strategy: postgres
+      user: postgres_user
+      password: postgres_password
+      url: jdbc:postgresql://localhost:5432/userdb
+      table: users
+      mapping:
+        id: user_id
+        username: login
+        name: first_name
+        surname: last_name
+    - name: db2
+      strategy: postgres
+      user: postgres_user_2
+      password: postgres_password_2
+      url: jdbc:postgresql://localhost:5433/user_database
+      table: user_table
+      mapping:
+        id: ldap_login
+        username: ldap_login
+        name: name
+        surname: surname
+    - name: db3
+      strategy: mysql
+      user: mysql_user
+      password: mysql_password
+      url: jdbc:mysql://localhost:3306/user_db
+      table: users_table
+      mapping:
+        id: user_id
+        username: user_login
+        name: user_name
+        surname: user_surname
+    - name: db4
+      strategy: mongo
+      url: mongodb://mongo_user:mongo_password@localhost:27017/userdb
+      database: userdb
+      table: users
+      mapping:
+        id: userId
+        username: userLogin
+        name: userName
+        surname: userSurname
+jdbc:
+  drivers:
+    postgres: org.postgresql.Driver
+    mysql: com.mysql.cj.jdbc.Driver
